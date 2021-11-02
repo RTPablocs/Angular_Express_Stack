@@ -1,0 +1,10 @@
+<h1>{{this.today | date: 'EEEE, MMMM d, y'}}</h1>
+
+<app-register-hours [day]="this.today" (readyToSendHourRegister)="elevateToParent($event)"></app-register-hours>
+<div class="button-container">
+    <lucide-icon (click)="changeDate(-1)" name="arrow-left" class="icon">Prev Day</lucide-icon>
+    <lucide-icon (click)="resetDate()" name="flag" class="icon"></lucide-icon>
+    <lucide-icon
+        (click)="changeDate(1)" name="arrow-right" class="icon">
+    </lucide-icon>
+</div>

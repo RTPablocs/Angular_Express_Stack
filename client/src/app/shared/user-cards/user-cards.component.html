@@ -1,0 +1,15 @@
+<div class="main-card">
+    <div *ngIf="!this.editing">
+        <h3 class="primary-font">{{user.surname}}, {{user.name}}</h3>
+        <p class="sec-font">@{{user.username}}</p>
+        <p class="sec-font"> Department: {{user.department}}</p>
+        <p class="sec-font"> Mail: {{user.mail}}</p>
+        <app-password-container [password]="user.password" *ngIf="this.forEditingPurposes"></app-password-container>
+    </div>
+
+    <app-user-form *ngIf="this.editing"  [isEditable]="true" (dataToSubmit)="this.decideNextStep($event)"></app-user-form>
+</div>
+<div class="edit-buttons" *ngIf="!this.editing && this.forEditingPurposes">
+    <lucide-icon name="x" (click)="deleteUser()"></lucide-icon>
+    <lucide-icon name="edit" (click)="switchEditMode()"></lucide-icon>
+</div>

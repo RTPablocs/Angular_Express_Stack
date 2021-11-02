@@ -1,0 +1,11 @@
+<div class="card">
+    <select [(ngModel)]="current_user">
+        <option selected="selected" disabled="disabled"> - </option>
+        <option value="user.id" *ngFor="let user of userList" [ngValue]="user">{{user.name}} {{user.surname}}</option>
+    </select>
+    <div class="grid-container">
+
+        <app-user-cards *ngIf="current_user" [user]="current_user" [forEditingPurposes]="false"></app-user-cards>
+        <app-hour-selector *ngIf="current_user" [day]="this.day" (computedHours)="emitFullHoursToParent($event)"></app-hour-selector>
+    </div>
+</div>

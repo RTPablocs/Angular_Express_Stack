@@ -1,0 +1,9 @@
+.grid {
+    display: inline-grid;
+    grid-template-columns: repeat(5, 18.5vw);
+    grid-template-rows: repeat(4, 18vh);
+    grid-column-gap: 1vh;
+    grid-row-gap: 1vh;
+    height: 90vh;
+}
+

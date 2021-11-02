@@ -1,0 +1,14 @@
+.card-main {
+    display: flex;
+    flex-direction: column;
+    padding: 2vh;
+    border-radius: 1vh;
+    justify-content: center;
+    align-items: center;
+    float: right;
+    position: absolute;
+    bottom: -50px;
+    right: 15px;
+}
+
+

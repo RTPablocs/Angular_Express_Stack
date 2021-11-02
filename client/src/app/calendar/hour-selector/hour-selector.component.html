@@ -1,0 +1,20 @@
+<div class="card">
+    <h3>Registering hours on: {{this.day | date: 'MMMM, d YYYY'}}</h3>
+    <form class="flex-form" [formGroup]="this.hourData">
+        <label> Start Hour
+            <input type="time" (change)="this.setHours(this.hourData.value.startHour, this.startDate)" formControlName="startHour">
+        </label>
+
+        <label> End Hour
+            <input type="time" (change)="this.setHours(this.hourData.value.endHour, this.endDate)" formControlName="endHour">
+        </label>
+
+    </form>
+    <div style="display: flex; flex-direction: row; justify-content: space-between">
+        <p>Total hours today: {{this.hours}} h </p>
+        <div class="icon-tray">
+            <lucide-icon name="check" (click)="emitHoursToParent()"></lucide-icon>
+            <lucide-icon name="alert-triangle" *ngIf="this.hours >= 10"></lucide-icon>
+        </div>
+    </div>
+</div>

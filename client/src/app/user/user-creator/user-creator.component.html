@@ -1,0 +1,4 @@
+<div class="card-main" [@openClose]="isOpen? 'open': 'close'">
+    <lucide-icon name="plus" class="icon" (click)="this.toggle()" *ngIf="!this.isOpen"></lucide-icon>
+    <app-user-form *ngIf="this.isOpen" (dataToSubmit)="setProperties($event)"></app-user-form>
+</div>

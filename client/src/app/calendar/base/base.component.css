@@ -1,0 +1,12 @@
+.grid {
+    display: inline-grid;
+    grid-template-columns: repeat(7, 13vw);
+    grid-template-rows: 3vw repeat(6, 5.5vw);
+    grid-gap: 1vh;
+}
+
+.day{
+    background-color: #f26849;
+    border-radius: 1vh;
+    padding: 1vh;
+}

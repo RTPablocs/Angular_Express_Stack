@@ -1,0 +1,20 @@
+.card {
+    background-color: #D9D9D9;
+    border-radius: 1vh;
+    width: available;
+    padding: 3vh;
+}
+
+.grid-container {
+    margin-top: 10px ;
+    display: grid;
+    grid-template-columns: 40% 40%;
+    justify-content: space-between;
+}
+
+select {
+    padding: .5vh;
+    border-radius: .5vh;
+    background-color: white;
+    border: none;
+}
