@@ -1,0 +1,14 @@
+POST http://localhost:3000/users/new
+Content-Type: application/json
+
+{
+  "name": "Pablo",
+  "surname": "CS",
+  "mail": "amdpablocs",
+  "username": "amdpablocs",
+  "department": "IT",
+  "password": "Sfdadfe"
+}
+###
+
+DELETE http://localhost:3000/users/delete/a7b78824-ebc9-48c2-836a-14df0c8bda82
