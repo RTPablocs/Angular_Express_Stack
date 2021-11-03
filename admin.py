@@ -5,8 +5,12 @@ import argparse
 from colorama import Fore
 
 
-containers = ['express_container', 'angular_container']
+containers = ['angular_container', 'express_container']
 images = ['angular_image', 'express_image']
+ports = {
+    'angular_image': {'4200/tcp': 4200},
+    'express_image': {'3000/tcp': 3000}
+}
 client = docker.from_env()
 
 parser = argparse.ArgumentParser(
@@ -21,8 +25,8 @@ def run_all_containers(*args):
     start_time = time.time()
     for container, image in zip(containers, images):
         try:
-            client.containers.run(image, detach=True, name=container)
-
+            client.containers.run(image, detach=True, name=container, ports=ports[image], network='nodeapp')
+            
         except docker.errors.APIError:
             print('Conflict with', container +
                   ', Does the container exists or is running?')
@@ -68,8 +72,10 @@ def make_clean_exit(*args):
 
 
 def build_image(*args):
+    print('Building image, please wait')
     client.images.build(path=args[1], tag=args[0])
-    client.images.list()
+    client.images.list(all=True)
+    print('Build Done!')
 
 
 args = parser.parse_args()
