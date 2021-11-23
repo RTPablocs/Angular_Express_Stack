@@ -26,7 +26,7 @@ export class RegisterHoursComponent implements OnInit {
             })
     }
     emitFullHoursToParent(arg: any): void {
-        arg.id = this.current_user.id
+        arg.user = this.current_user.id
         this.readyToSendHourRegister.emit(arg)
     }
 

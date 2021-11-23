@@ -1,0 +1,36 @@
+version: '3.9'
+services:
+  
+  prometheus:
+    build: prometheus/
+    ports:
+      - ${PROMETHEUS_PORT}
+    container_name: prometheus
+    networks:
+      - back-network
+  
+  grafana:
+    build: grafana/
+    ports:
+      - ${GRAFANA_PORT}
+    container_name: grafana
+    volumes:
+      - ./grafana/datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml
+      - myGrafanaVol:/var/lib/grafana
+    environment:
+      GF_AUTH_DISABLE_LOGIN_FORM: "true"
+      GF_AUTH_ANONYMOUS_ENABLED: "true"
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Admin
+      GF_INSTALL_PLUGINS: grafana-clock-panel 1.0.1
+    depends_on:
+      - prometheus
+    networks:
+      - back-network
+
+volumes:
+  myGrafanaVol:
+    
+networks:
+  back-network:
+    external:
+      name: logs-network

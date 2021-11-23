@@ -13,13 +13,16 @@ import {
     BarChart2,
     User,
     Calendar,
-    Settings
+    Settings,
+    LogOut
 } from 'lucide-angular';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { UserModule } from './user/user.module';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import {CalendarModule} from "./calendar/calendar.module";
+import { GraphQLModule } from './graphql.module';
+import {InterceptorsInterceptor} from "./core/interceptors/interceptors.interceptor";
 
 @NgModule({
     declarations: [
@@ -36,16 +39,22 @@ import {CalendarModule} from "./calendar/calendar.module";
             BarChart2,
             User,
             Calendar,
-            Settings
+            Settings,
+            LogOut
         }),
         FormsModule,
         ReactiveFormsModule,
         UserModule,
         SharedModule,
         CoreModule,
-        CalendarModule
+        CalendarModule,
+        GraphQLModule
     ],
-    providers: [],
+    providers: [{
+        provide: HTTP_INTERCEPTORS,
+        useClass: InterceptorsInterceptor,
+        multi: true
+    }],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

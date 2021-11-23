@@ -1,0 +1,31 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type Hour {
+    end: Date
+    start: Date
+    user: String
+}
+
+type Mutation {
+    deleteHour(end: Date, start: Date, user: String): [Hour]
+    registerHour(end: Date, start: Date, user: String): String
+    updateHour(arguments: HourArg, filter: HourArg): [Hour]
+}
+
+type Query {
+    Hours(end: Date, start: Date, user: String): [Hour]
+}
+
+input HourArg {
+    end: Date
+    start: Date
+    user: String
+}
+
+
+scalar Date

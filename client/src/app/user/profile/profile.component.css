@@ -1,0 +1,23 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 100px) 150px;
+    grid-gap: 5px
+}
+.grid-header{
+    background-color: #f26849;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 3px;
+    position: sticky;
+    overflow: auto;
+}
+
+.grid-items {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #D9D9D9;
+    border-radius: 3px;
+}

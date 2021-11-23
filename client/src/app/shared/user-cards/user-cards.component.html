@@ -1,6 +1,6 @@
 <div class="main-card">
     <div *ngIf="!this.editing">
-        <h3 class="primary-font">{{user.surname}}, {{user.name}}</h3>
+        <h3 class="primary-font" [routerLink]="['/users/', user.id ]">{{user.surname}}, {{user.name}}</h3>
         <p class="sec-font">@{{user.username}}</p>
         <p class="sec-font"> Department: {{user.department}}</p>
         <p class="sec-font"> Mail: {{user.mail}}</p>

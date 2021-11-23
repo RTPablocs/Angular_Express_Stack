@@ -18,6 +18,8 @@ import { UserFiltersComponent } from './user-filters/user-filters.component';
 import { UserCreatorComponent } from './user-creator/user-creator.component';
 import { SharedModule } from '../shared/shared.module';
 import { CoreModule } from '../core/core.module';
+import { ProfileComponent } from './profile/profile.component';
+import { LoginFormComponent } from './login-form/login-form.component';
 
 @NgModule({
     declarations: [
@@ -25,9 +27,12 @@ import { CoreModule } from '../core/core.module';
         UserCardsComponent,
         UserFiltersComponent,
         UserCreatorComponent,
+        ProfileComponent,
+        LoginFormComponent,
     ],
     exports: [
-        UserCardsComponent
+        UserCardsComponent,
+        LoginFormComponent
     ],
     imports: [
         CommonModule,

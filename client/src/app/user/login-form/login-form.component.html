@@ -1,0 +1,10 @@
+<div class="container">
+    <div class="form-container">
+        <h2 class="primary-font">Login</h2>
+        <form class="flex-form" [formGroup]="this.loginData">
+            <input type="email" placeholder="E-mail" formControlName="mail">
+            <input type="password" placeholder="Password" formControlName="password">
+        </form>
+        <button class="primary-font" (click)="this.executeLogin()">Login</button>
+    </div>
+</div>

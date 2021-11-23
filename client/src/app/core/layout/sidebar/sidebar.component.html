@@ -1,7 +1,8 @@
 <div class="sidenav">
-    <lucide-icon name="clock" class="icon" routerLinkActive="icon-active"></lucide-icon>
-    <lucide-icon name="calendar" class="icon" routerLinkActive="icon-active" routerLink="/calendar"></lucide-icon>
-    <lucide-icon name="bar-chart-2" class="icon" routerLinkActive="icon-active"></lucide-icon>
-    <lucide-icon name="user" class="icon" routerLink='/users/list' routerLinkActive="icon-active"></lucide-icon>
-    <lucide-icon name="settings" class="icon" routerLinkActive="icon-active"></lucide-icon>
+    <div>
+        <lucide-icon name="clock" class="icon" routerLink="/"></lucide-icon>
+        <lucide-icon name="calendar" class="icon" routerLinkActive="icon-active" routerLink="/calendar"></lucide-icon>
+        <lucide-icon name="user" class="icon" routerLink='/users/list' routerLinkActive="icon-active"></lucide-icon>
+    </div>
+    <lucide-icon name="log-out" class="icon" (click)="executeLogout()"></lucide-icon>
 </div>

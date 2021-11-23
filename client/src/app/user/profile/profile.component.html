@@ -1,0 +1,19 @@
+<div class="app-display">
+    <h1 class="primary-font">{{this.user.name}}'s Profile</h1>
+    <app-user-cards [user]="user" [forEditingPurposes]="false" style="width: 45vw;"></app-user-cards>
+    <div>
+        <div>
+            <h2 class="primary-font">Hour History</h2>
+        </div>
+
+        <div *ngFor="let hour of this.hours" class="primary-font grid">
+            <h3 class="grid-header">Day</h3> <h3 class="grid-header">Start</h3> <h3 class="grid-header">End</h3> <h3 class="grid-header">Actions</h3>
+            <p class="grid-items">{{hour.start | date: 'dd-MM-yyyy'}}</p>
+            <p class="grid-items">{{hour.start | date: 'HH:mm'}}</p>
+            <p class="grid-items">{{hour.end | date: 'HH:mm'}}</p>
+            <div class="grid-items">
+                <lucide-icon name="trash-2" (click)="this.deleteHour(hour)"></lucide-icon>
+            </div>
+        </div>
+    </div>
+</div>

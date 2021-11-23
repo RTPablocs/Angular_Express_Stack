@@ -17,9 +17,9 @@ module.exports = {
     },
 
     async getMyOwnData(req, res) {
-        let r = {}
-        r.user = await models.user.findOne({ where: { id: req.params.id } })
-        res.status(200).json(r)
+        
+        user = await models.user.findOne({ where: { id: req.params.id } })
+        res.status(200).json(user)
 
     },
 

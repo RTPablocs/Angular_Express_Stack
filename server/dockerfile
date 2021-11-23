@@ -1,11 +1,18 @@
-FROM node:lts-bullseye
+# Dependencies Stage 
+FROM node:latest AS deps
 
+WORKDIR /deps
+COPY package.json ./
+
+RUN npm install
+
+
+# Build Stage
+FROM node:lts-bullseye
 WORKDIR /app
 COPY . .
+#RUN npm install
+COPY --from=deps /deps/node_modules ./node_modules
+COPY --from=deps /deps/package-lock.json ./
 
-
-RUN npm install 
-RUN npm install sqlite3@5.0.0
-
-EXPOSE 3000
 CMD npm start

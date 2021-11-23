@@ -5,7 +5,6 @@ const path = require('path')
 const logger = require('morgan')
 const indexRouting = require('./routes/index.js')
 const userRouting = require('./routes/users.js')
-const hourRouting = require('./routes/hours.js')
 const cors = require('cors')
 require('./auth/passport')
 const authRouting = require('./routes/auth')
@@ -14,6 +13,21 @@ const passport = require('passport')
 const app = express()
 const port = 3000
 
+const promBundle = require("express-prom-bundle");
+// Add the options to the prometheus middleware most option are for http_request_duration_seconds histogram metric
+const metricsMiddleware = promBundle({
+ includeMethod: true, 
+ includePath: true, 
+ includeStatusCode: true, 
+ includeUp: true,
+ customLabels: {project_name: 'hello_world', project_type: 'test_metrics_labels'},
+ promClient: {
+ collectDefaultMetrics: {
+ }
+ }
+});
+// add the prometheus middleware to all routes
+app.use(metricsMiddleware)
 
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
@@ -29,8 +43,7 @@ app.use(passport.initialize())
 app.disable('etag')
 
 app.use('/', indexRouting)
-app.use('/users', userRouting)
-app.use('/hours', hourRouting)
+app.use('/users', passport.authenticate('jwt', {session: false}), userRouting)
 app.use('/auth', authRouting)
 
 // Not found error handler

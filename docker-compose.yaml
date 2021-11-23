@@ -1,0 +1,51 @@
+version: '3'
+services:
+
+  angular:
+    container_name: angular
+    build: client/
+    ports: 
+      - ${CLIENT_PORT}
+    depends_on:
+      - express
+      - apollo
+      - mongo
+    networks:
+      - bridge_net
+
+  express:
+    container_name: express
+    build: server/
+    depends_on:
+      - apollo
+      - mongo
+    ports: 
+      - ${EXPRESS_PORT}
+    networks:
+      - bridge_net
+      - front-network
+
+  apollo:
+    container_name: apollo
+    build: graphql/
+    depends_on:
+      - mongo
+    networks:
+      - bridge_net
+    ports: 
+      - ${APOLLO_PORT}
+    restart: always
+
+  mongo:
+    container_name: mongo
+    image: mongo:latest
+    networks:
+      - bridge_net
+    ports: 
+      - ${MONGO_PORT}
+
+networks:
+  bridge_net:
+  front-network:
+    external:
+      name: logs-network

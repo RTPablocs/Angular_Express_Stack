@@ -40,6 +40,7 @@ export class HourSelectorComponent implements OnInit {
     }
 
     emitHoursToParent(): void {
+        this.hourData.reset()
         const hoursToEmit = {'start': this.startDate, 'end': this.endDate}
         this.computedHours.emit(hoursToEmit)
     }
