@@ -1,5 +1,16 @@
 # Despliegue de Servicios con Logs en entorno con múltiples docker-compose
 
+## Docker Compose
+Docker Compose es una herramienta para definir y ejecutar aplicaciones Docker de varios contenedores. Utiliza archivos YAML para configurar los servicios de la aplicación y realiza el proceso de creación y puesta en marcha de todos los contenedores con un solo comando. La utilidad CLI de docker-compose permite a los usuarios ejecutar comandos en varios contenedores a la vez, por ejemplo, crear imágenes, escalar contenedores, ejecutar contenedores que se detuvieron y más. Los comandos relacionados con la manipulación de imágenes, o las opciones interactivas del usuario, no son relevantes en Docker Compose porque se dirigen a un contenedor. El archivo docker-compose.yml se usa para definir los servicios de una aplicación e incluye varias opciones de configuración.
+
+## Kubernetes
+
+Kubernetes es una plataforma portable y extensible de código abierto para administrar cargas de trabajo y servicios. Kubernetes facilita la automatización y la configuración declarativa. Tiene un ecosistema grande y en rápido crecimiento. El soporte, las herramientas y los servicios para Kubernetes están ampliamente disponibles.
+
+Kubernetes ofrece un entorno de administración centrado en contenedores. Kubernetes orquesta la infraestructura de cómputo, redes y almacenamiento para que las cargas de trabajo de los usuarios no tengan que hacerlo. Esto ofrece la simplicidad de las Plataformas como Servicio (PaaS) con la flexibilidad de la Infraestructura como Servicio (IaaS) y permite la portabilidad entre proveedores de infraestructura.
+
+
+
 ## Preámbulo
 En esta práctica, desplegaremos el proyecto de la asignatura de programación de entorno servidor mediante docker-compose, mucho más sencillo que desplegarlo mediante Dockerimage
 
@@ -101,3 +112,26 @@ Ahora que las configuraciones están hechas, habrá que ir a prometheus para com
 
 Aquí podemos ver que el endpoint está funcionanod sin ningún tipo de problema, una vez tengamos esto, lo siguiente será configurar grafana para poder leer los logs que envíe prometheus.
 
+El primer paso, será dirigirse a grafana y crear un dashboard, para que podamos leer todos los eventos de prometheus una vez aquí, podremos leer cualquier evento que prometheus nos mande, solo tenemos que configurar que evento queremos que se muestre en la gráfica, gracias  a que grafana tiene algunos builtins, podemos facilmente escoger el que necesitemos mediante el desplegable situado al lado de la barra de filtro de la búsqueda.
+
+![](img/l.png)
+
+Aquí podemos ver que se han registrado algunos eventos, y que se han mostrado dentro de la gráfica, ahora presionaremos en guardar, y se nos activará el dashboard.
+
+
+## Modificaciones en el código
+Para poder hacer funcionar todo desde el servidor, se ha utilizado la librería express-prom-bundle, la cual se ha instalado a través de npm y se basa en prom-client
+
+Estos han sido los cambios necesarios para poder comunicarse con prometheus
+
+![](img/m.png)
+
+## El archivo .env
+Dentro de ambos docker-compose, existen variables de entorno para definir los puertos, estas se cargan desde un archivo .env que se encuentra en la raíz del proyecto, esta es su estructura: 
+
+![](img/n.png)
+
+## Docker compose para entorno de producción
+En este caso, también se ha creado un archivo docker-compose.prod.yaml, el cual simula un entorno de producción donde mongo y express ya han sido desplegados en otro servidor, este es su contenido:
+
+![](img/o.png)
